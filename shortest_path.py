@@ -50,23 +50,31 @@ def dijkstra(adj_matrix: np.ndarray, source: int, target: int) -> list[int]:
     L[source] = 0
     pred = [None] * num_nodes
     S = set()
-
+ 
     while target not in S:
         # Use the Pseudo code from L16 S14 as a guide
         # TODO: Write your code here
-
-
+        u = None
+        min_distance = float ('inf')
+        for node in range (num_nodes):
+            if node not in S and L[node] < min_distance:
+                min_distance = L[node]
+                u = node
+ 
         # If no reachable node remains, return empty path
         if u is None or L[u] == float('inf'):
             return []
-               
         # Mark node as visited               
         S.add(u)
-
+ 
         # TODO: Write your code here
         for v in range(num_nodes):
-
-
+            if v not in S:
+                w = adj_matrix[u,v]
+                if w > 0 and L[u] + w < L[v]:
+                    L[v] = L[u] + w
+                    pred [v] = u
+ 
 
 
 
